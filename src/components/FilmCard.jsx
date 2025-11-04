@@ -1,22 +1,35 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
-const FilmCard = () => {
+const FilmCard = ({ movieProp }) => {
+    const { id, title, director, genre, image } = movieProp;
+
     return (
-        <div className="card mb-4">
-            <img src="https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg
-" alt="titolo film" />
-            <div className="card-body">
-                <h5 className="card-title">Titolo Film</h5>
-                <address><i>Regista</i></address>
-                <p className="card-text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, quam! Quaerat molestias autem hic neque quia quod asperiores, vel veniam mollitia repellat illo repudiandae praesentium qui deserunt velit adipisci explicabo!
-                </p>
-                <Link to="films/1" className="btn btn-primary">
-                    See more
-                </Link>
+        <div className="col">
+            <div className="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+                <div className="image-container">
+                    <img
+                        src={image}
+                        alt={title}
+                        className="card-img-top"
+                    />
+                </div>
+                <div className="card-body d-flex flex-column">
+                    <h5 className="card-title text-primary fw-semibold">{title}</h5>
+                    <p className="card-text mb-1 text-muted">
+                        <strong>Director:</strong> {director}
+                    </p>
+                    <p className="card-text text-secondary">
+                        <strong>Genre:</strong> {genre}
+                    </p>
+                    <div className="mt-auto">
+                        <Link to={`/movies/${id}`} className="btn btn-outline-primary w-100">
+                            See more
+                        </Link>
+                    </div>
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default FilmCard
+export default FilmCard;
